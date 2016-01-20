@@ -1,0 +1,22 @@
+{
+  "name": "node-base",
+  "version": "0.0.1",
+  "description": "A launching point for building a node app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddmills/node-base.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Dalton Mills",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ddmills/node-base/issues"
+  },
+  "homepage": "https://github.com/ddmills/node-base#readme"
+}
