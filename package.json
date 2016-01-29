@@ -14,9 +14,6 @@
     "type": "git",
     "url": "git+https://github.com/ddmills/node-base.git"
   },
-  "keywords": [
-    "node"
-  ],
   "author": "Dalton Mills",
   "license": "ISC",
   "bugs": {
