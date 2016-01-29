@@ -1,11 +1,11 @@
+require('./config');
+
 var
   http    = require('http'),
   express = require('express')
 ;
 
-const PORT = process.env.OPENSHIFT_NODEJS_PORT || 8000;
-const IP = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-
+console.log(process.env.SERVE_IP, process.env.SERVE_PORT);
 
 function handleRequest(request, response) {
   response.end(`Web server running on Node.js v${process.versions.node}.`);
@@ -13,6 +13,6 @@ function handleRequest(request, response) {
 
 var server = http.createServer(handleRequest);
 
-server.listen(PORT, IP, function() {
-  console.log(`Server listening on http://${IP}:${PORT}`);
+server.listen(process.env.SERVE_PORT, process.env.SERVE_IP, function() {
+  console.log(`Server listening on http://${process.env.SERVE_IP}:${process.env.SERVE_PORT}`);
 });
