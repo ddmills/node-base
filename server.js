@@ -1,4 +1,8 @@
-var http = require('http');
+var
+  http    = require('http'),
+  express = require('express')
+;
+
 
 const PORT = process.env.OPENSHIFT_NODEJS_PORT || 8000;
 const IP = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
