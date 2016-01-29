@@ -12,3 +12,7 @@ deploy:
   domain: $DOMAIN_NAME
   app: $APP_NAME
   on: deploy
+
+before_script:
+  - npm install -g gulp
+script: gulp
