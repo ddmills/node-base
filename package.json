@@ -4,7 +4,11 @@
   "description": "A launching point for building a node app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
   },
   "repository": {
     "type": "git",
@@ -18,5 +22,16 @@
   "bugs": {
     "url": "https://github.com/ddmills/node-base/issues"
   },
-  "homepage": "https://github.com/ddmills/node-base#readme"
+  "homepage": "https://github.com/ddmills/node-base#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-if": "^2.0.0",
+    "gulp-uglify": "^1.5.1",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "dotenv": "^2.0.0"
+  }
 }
