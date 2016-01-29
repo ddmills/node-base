@@ -5,16 +5,19 @@ require('dotenv').config();
 var
     gulp   = require('gulp'),
     clean  = require('gulp-clean'),
+    sass   = require('gulp-sass'),
     concat = require('gulp-concat'),
     gulpif = require('gulp-if'),
-    uglify = require('gulp-uglify')
+    minify = require('gulp-minify-css'),
+    uglify = require('gulp-uglify'),
+    merge  = require('merge-stream')
 ;
 
 var paths = {
-    ejs  : ['public/**/*.ejs'],
-    sass : ['public/**/*.scss'],
-    css  : ['public/**/*.css'],
-    dist : ['build/']
+    ejs  : ['resources/**/*.ejs'],
+    sass : ['resources/**/*.scss'],
+    css  : ['resources/**/*.css'],
+    dist : process.env.BUILD_DIR
 };
 
 /*
@@ -26,15 +29,26 @@ gulp.task('clean', function() {
         .pipe(clean());
 });
 
-
-gulp.task('css', function() {
-    gulp
+gulp.task('css', ['clean'], function() {
+    var sassStream = gulp
         .src(paths.sass)
-        // .pipe(concat('all'));
+        .pipe(sass().on('error', sass.logError));
+
+    var cssStream = gulp
+        .src(paths.css);
+
+    var combined = merge(sassStream, cssStream);
+
+    return combined
+        .pipe(gulpif(process.env.ENV == 'production', minify({compatibility: 'ie8'})))
+        .pipe(concat('public/css/app.css'))
+        .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('default', ['clean', 'css'], function() {
-    gulp
+gulp.task('copy', ['clean'], function() {
+    return gulp
         .src(paths.ejs)
         .pipe(gulp.dest(paths.dist));
 });
+
+gulp.task('default', ['clean', 'copy', 'css']);

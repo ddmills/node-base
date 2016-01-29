@@ -1,18 +1,25 @@
 require('./config');
 
 var
-  http    = require('http'),
   express = require('express')
 ;
 
-console.log(process.env.SERVE_IP, process.env.SERVE_PORT);
+var app = express();
 
-function handleRequest(request, response) {
-  response.end(`Web server running on Node.js v${process.versions.node}.`);
-}
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/build/public/views');
+app.set('port', process.env.SERVE_PORT);
+app.set('ip', process.env.SERVE_IP);
 
-var server = http.createServer(handleRequest);
+var router = express.Router();
 
-server.listen(process.env.SERVE_PORT, process.env.SERVE_IP, function() {
-  console.log(`Server listening on http://${process.env.SERVE_IP}:${process.env.SERVE_PORT}`);
+router.get('/', function(req, res) {
+  res.render('index');
 });
+
+app.use(router);
+
+app.use('/', express.static(__dirname + '/build/public/'));
+
+console.log(`Server listening on http://${app.get('ip')}:${app.get('port')}`);
+app.listen(app.get('port'), app.get('ip'));
