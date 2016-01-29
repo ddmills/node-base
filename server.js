@@ -7,7 +7,7 @@ var
 var app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/build/public/views');
+app.set('views', __dirname + '/' + process.env.BUILD_DIR + '/public/views');
 app.set('port', process.env.SERVE_PORT);
 app.set('ip', process.env.SERVE_IP);
 
@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 
 app.use(router);
 
-app.use('/', express.static(__dirname + '/build/public/'));
+app.use('/', express.static(__dirname + '/' + process.env.BUILD_DIR + '/public/'));
 
 console.log(`Server listening on http://${app.get('ip')}:${app.get('port')}`);
 app.listen(app.get('port'), app.get('ip'));
