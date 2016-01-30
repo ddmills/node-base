@@ -1,13 +1,16 @@
 require('./config');
 
 var
-  express = require('express')
+  express = require('express'),
+  path    = require('path')
 ;
+
+var PUBDIR = path.join(__dirname, 'public');
 
 var app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/' + process.env.BUILD_DIR + '/public/views');
+app.set('views', path.join(PUBDIR, 'views'));
 app.set('port', process.env.SERVE_PORT);
 app.set('ip', process.env.SERVE_IP);
 
@@ -18,8 +21,7 @@ router.get('/', function(req, res) {
 });
 
 app.use(router);
-
-app.use('/', express.static(__dirname + '/' + process.env.BUILD_DIR + '/public/'));
+app.use('/', express.static(PUBDIR));
 
 console.log(`Server listening on http://${app.get('ip')}:${app.get('port')}`);
 app.listen(app.get('port'), app.get('ip'));

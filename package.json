@@ -4,7 +4,7 @@
   "description": "A launching point for building a node app",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node dist/server.js",
     "test": "mocha"
   },
   "engines": {
@@ -34,6 +34,7 @@
   "dependencies": {
     "dotenv": "^2.0.0",
     "ejs": "^2.4.1",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mongoose": "^4.3.7"
   }
 }
