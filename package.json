@@ -2,7 +2,7 @@
   "name": "node-base",
   "version": "0.0.1",
   "description": "A launching point for building a node app",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server.js",
     "test": "mocha"
